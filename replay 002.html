@@ -1,0 +1,67 @@
+<!-- 
+terry mystica snelmann game browser
+version 0.01
+(c) 2019 michel.vanbiervliet@gmail.com 
+
+dit is een alpha versie, een prototype dus.
+gebruiken op eigen risico ! ;)
+
+-->
+
+<html>
+<head>
+    <style>
+        iframe {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body onload="Init()">
+
+  Game: <input type="text" name="game" id="game" value="Jan229" onchange="Init()"/>
+  <button type="submit" onclick="GoPrev()">Prev</button>  
+  <button type="submit" onclick="GoNext()">Next</button>  
+  <button type="submit" onclick="Test()">Test</button>  
+  <span id="teller">default</span>
+  
+  <br> <br>
+  <iframe id="iframe-1"></iframe>
+  <iframe id="iframe-2" src="TM - Jan229.html"></iframe>
+  
+ 
+ 
+    <script>
+        let teller = 40
+        
+        function Init() {
+            game = document.getElementById("game").value
+            document.getElementById("teller").innerHTML=teller;
+            document.getElementById("iframe-1").src ="https://terra.snellman.net/game/" + game + "/max-row=" + (teller + 1) ;  
+        }
+        
+        
+        function GoNext() {
+            teller +=1;
+            game = document.getElementById("game").value
+            document.getElementById("teller").innerHTML=teller;
+            document.getElementById("iframe-1").src ="https://terra.snellman.net/game/" + game + "/max-row=" + (teller + 1) ;
+        }
+        function GoPrev() {
+            teller -=1;
+            game = document.getElementById("game").value
+            document.getElementById("teller").innerHTML=teller;
+            document.getElementById("iframe-1").src ="https://terra.snellman.net/game/" + game + "/max-row=" + (teller+1);
+        }
+        
+        function Test() {
+            frame =  document.getElementById("iframe-2");
+            framedoc = (frame.contentWindow || frame.contentDocument);
+            n =  framedoc.getElementById("ledger").rows.length;
+            alert(n);
+        }
+    </script> 
+
+    
+    </body>
+</html>
